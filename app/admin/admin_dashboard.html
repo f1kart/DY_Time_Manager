@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+ <div class="dashboard-header">
+    <h1>Administration Panel</h1> 
+ </div> 
+
+ <div class="dashboard-sections"> 
+     <section class="truck-summary">
+          <h2>Truck Overview</h2>
+          </section>
+
+     <section class="user-management">
+        <h2>Manage Users</h2>
+        </section> 
+
+ </div> 
+
+{% endblock %} 
+<thead>
+        <tr>
+          <th>Truck ID</th>
+          <th>Status</th>
+          <th>Date Started</th> <th>Date Complete</th>
+          <th>To Do</th>
+          <th>Inspection</th>
+          <th>Punch List</th>
+          <th>Assigned To</th>
+          <th>Actions</th> 
+        </tr>
+   </thead>
+
+    <tbody> 
+   
+        {% for truck in trucks %}
+        <tr>
+          <td>{{ truck.truck_id }}</td>
+          <td>{{ truck.status }}</td>
+          <td>{{ truck.date_started }}</td> 
+          <td>{{ truck.date_complete }}</td> 
+          <td>{{ truck.to_do }}</td>
+          <td>{{ truck.inspection }}</td>
+          <td>{{ truck.punch_list}}</td>
+          <td>{{ truck.assigned_user.username or 'Unassigned' }}</td>  
+          <td>
+            </td>
+       </tr>
+       {% endfor %} 
+   </tbody>
+   </table> 
+

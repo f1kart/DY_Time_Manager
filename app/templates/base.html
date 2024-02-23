@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <title>My App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='navbar.css') }}">
+    <script src="{{ url_for('static', filename='navbar.js') }}"></script>
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/tasks">Logged Tasks</a></li>
+    </ul>
+</nav>
+    <nav class="navbar
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo">
+            </div>
+            <ul class="navbar-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/tasks">Tasks</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/register">Register</a></li>
+            </ul>
+            <div class="navbar-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+<form action="/tasks" method="GET">
+    <label for="truck_id">Filter by Truck ID:</label>
+    <input type="text" id="truck_id" name="truck_id" placeholder="Enter truck ID">
+    <button type="submit">Filter</button>
+</form>
+<form action="/tasks" method="GET">
+    <label for="truck_id">Filter by Truck ID:</label>
+    <input type="text" id="truck_id" name="truck_id" placeholder="Enter truck ID">
+    <button type="submit">Filter</button>
+</form>
+<form action="/tasks" method="GET">
+    <label for="sort_by">Sort by:</label>
+    <select id="sort_by" name="sort_by">
+        <option value="">None</option>
+        <option value="start_time">Start Time</option>
+        <option value="stop_time">Stop Time</option>
+    </select>
+    <button type="submit">Sort</button>
+<nav>
+    <ul>
+        <!-- Existing code... -->
+        <li><a href="/update_time/{{ task.id }}">Update Task</a></li>
+    </ul>
+</nav>
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/tasks">Logged Tasks</a></li>
+        {% for task in tasks %}
+        <li><a href="/update_time/{{ task.id }}">Update Task {{ task.id }}</a></li>
+        {% endfor %}
+    </ul>
+</nav>
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="{{ url_for('auth.profile') }}">Profile</a></li>
+        <li><a href="{{ url_for('auth.edit_profile') }}">Edit Profile</a></li>
+        <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+    </ul>
+</nav>
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="{{ url_for('main.tasks') }}">Tasks</a></li>
+        <li><a href="{{ url_for('main.add_task') }}">Add Task</a></li>
+    </ul>
+</nav>
+</form>
+</body>
+</html>
+
+

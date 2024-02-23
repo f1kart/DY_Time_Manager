@@ -1,0 +1,52 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Update Task</h1>
+<form action="/update_time/{{ task.id }}" method="POST">
+    <label for="task_name">Task Name:</label>
+    <input type="text" id="task_name" name="task_name" value="{{ task.task_name }}" required>
+
+    <label for="start_time">Start Time:</label>
+    <input type="datetime-local" id="start_time" name="start_time" value="{{ task.start_time|datetimeformat }}" required>
+
+    <label for="stop_time">Stop Time:</label>
+    <input type="datetime-local" id="stop_time" name="stop_time" value="{{ task.stop_time|datetimeformat }}" required>
+
+    <button type="submit">Update</button>
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Update Task</h1>
+<form action="/update_time/{{ task.id }}" method="POST">
+    <label for="task_name">Task Name:</label>
+    <input type="text" id="task_name" name="task_name" value="{{ task.task_name }}" required>
+
+    <label for="start_time">Start Time:</label>
+    <input type="datetime-local" id="start_time" name="start_time" value="{{ task.start_time|datetimeformat }}" required>
+
+    <label for="stop_time">Stop Time:</label>
+    <input type="datetime-local" id="stop_time" name="stop_time" value="{{ task.stop_time|datetimeformat }}" required>
+
+    <button type="submit">Update</button>
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Update Task</h1>
+<form action="/update_time/{{ task.id }}" method="POST">
+    <label for="task_name">Task Name:</label>
+    <input type="text" id="task_name" name="task_name" value="{{ task.task_name }}" required>
+
+    <label for="start_time">Start Time:</label>
+    <input type="datetime-local" id="start_time" name="start_time" value="{{ task.start_time|datetimeformat }}" required>
+
+    <label for="stop_time">Stop Time:</label>
+    <input type="datetime-local" id="stop_time" name="stop_time" value="{{ task.stop_time|datetimeformat }}" required>
+
+    <button type="submit">Update</button>
+</form>
+{% endblock %}
+
+
+
+

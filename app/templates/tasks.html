@@ -1,0 +1,287 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Logged Tasks</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Task Name</th>
+            <th>Start Time</th>
+            <th>Stop Time</th>
+            <th>Truck ID</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in tasks %}
+        <tr>
+            <td>{{ task.task_name }}</td>
+            <td>{{ task.start_time }}</td>
+            <td>{{ task.stop_time }}</td>
+            <td>{{ task.truck.truck_id }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Logged Tasks</h1>
+<table>
+    <thead>
+        <!-- Existing code... -->
+        <th>Actions</th>
+    </thead>
+    <tbody>
+        {% for task in tasks %}
+        <tr>
+            <!-- Existing code... -->
+            <td>
+                <form action="/delete_time/{{ task.id }}" method="POST">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+
+{% block content %}
+<h1>Logged Tasks</h1>
+<form action="/tasks" method="GET">
+    <label for="sort_by">Sort By:</label>
+    <select id="sort_by" name="sort_by">
+        <option value="start_time">Start Time</option>
+        <option value="stop_time">Stop Time</option>
+        <option value="task_name">Task Name</option>
+    </select>
+
+    <label for="sort_order">Sort Order:</label>
+    <select id="sort_order" name="sort_order">
+        <option value="asc">Ascending</option>
+        <option value="desc">Descending</option>
+    </select>
+
+    <button type="submit">Sort</button>
+</form>
+<table>
+    <!-- Existing code... -->
+</table>
+{% endblock %}
+
+{% block content %}
+<h1>Logged Tasks</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Task Name</th>
+            <th>Start Time</th>
+            <th>Stop Time</th>
+            <th>Truck ID</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in tasks %}
+        <tr>
+            <td>{{ task.task_name }}</td>
+            <td>{{ task.start_time }}</td>
+            <td>{{ task.stop_time }}</td>
+            <td>{{ task.truck.truck_id }}</td>
+            <td>
+                {% if not task.stop_time %}
+                <form action="/update_time/{{ task.id }}" method="POST">
+                    <button type="submit">Stop</button>
+                </form>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+{% extends 'base.html' %}
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Logged Tasks</h1>
+<form action="/tasks" method="GET">
+    <label for="truck_id">Filter by Truck ID:</label>
+    <input type="text" id="truck_id" name="truck_id" placeholder="Enter truck ID">
+    <button type="submit">Filter</button>
+</form>
+<table>
+    <!-- Existing code... -->
+</table>
+{% endblock %}
+
+{% block content %}
+<h1>Logged Tasks</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Task Name</th>
+            <th>Start Time</th>
+            <th>Stop Time</th>
+            <th>Truck ID</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in tasks %}
+        <tr>
+            <td>{{ task.task_name }}</td>
+            <td>{{ task.start_time }}</td>
+            <td>{{ task.stop_time }}</td>
+            <td>{{ task.truck.truck_id }}</td>
+            <td>
+                {% if not task.stop_time %}
+                <form action="/update_time/{{ task.id }}" method="POST">
+                    <button type="submit">Stop</button>
+                </form>
+                {% endif %}
+                <form action="/delete_time/{{ task.id }}" method="POST">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Logged Tasks</h1>
+<form action="/tasks" method="GET">
+    <label for="filter_date">Filter by Date:</label>
+    <input type="date" id="filter_date" name="filter_date">
+
+    <label for="filter_time">Filter by Time:</label>
+    <input type="time" id="filter_time" name="filter_time">
+
+    <button type="submit">Filter</button>
+</form>
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Logged Tasks</h1>
+<form action="/tasks" method="GET">
+    <!-- Existing code... -->
+    <label for="sort_by">Sort by:</label>
+    <select id="sort_by" name="sort_by">
+        <option value="">None</option>
+        <option value="start_time_asc">Start Time (Ascending)</option>
+        <option value="start_time_desc">Start Time (Descending)</option>
+    </select>
+
+    <button type="submit">Filter & Sort</button>
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Logged Tasks</h1>
+<table>
+    <thead>
+        <!-- Existing code... -->
+        <th>Actions</th>
+    </thead>
+    <tbody>
+        {% for task in tasks %}
+        <tr>
+            <!-- Existing code... -->
+            <td>
+                <form action="/delete_time/{{ task.id }}" method="POST">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Tasks</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Task Name</th>
+            <th>Start Time</th>
+            <th>Stop Time</th>
+            <th>Truck</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in tasks %}
+        <tr>
+            <td>{{ task.task_name }}</td>
+            <td>{{ task.start_time }}</td>
+            <td>{{ task.stop_time }}</td>
+            <td>{{ task.truck.truck_id }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Tasks</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Task Name</th>
+            <th>Start Time</th>
+            <th>Stop Time</th>
+            <th>Truck</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in tasks %}
+        <tr>
+            <td>{{ task.task_name }}</td>
+            <td>{{ task.start_time }}</td>
+            <td>{{ task.stop_time }}</td>
+            <td>{{ task.truck.truck_id }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h1>Trucks</h1>
+<ul>
+    {% for truck in trucks %}
+    <li>{{ truck.truck_id }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
+<table>
+    <thead>
+        <tr>
+            <th>Task Name</th>
+            <th>Start Time</th>
+            <th>Stop Time</th>
+            <th>Truck</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in tasks %}
+        <tr>
+            <td>{{ task.task_name }}</td>
+            <td>{{ task.start_time }}</td>
+            <td>{{ task.stop_time }}</td>
+            <td>{{ task.truck.truck_id }}</td>
+            <td>
+                <a href="{{ url_for('main.update_task', task_id=task.id) }}">Update</a>
+                <form method="POST" action="{{ url_for('main.delete_task', task_id=task.id) }}" style="display: inline-block;">
+                    {{ form.csrf_token }}
+                    <button type="submit" class="btn-link">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</form>
+
+
+

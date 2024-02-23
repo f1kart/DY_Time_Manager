@@ -1,0 +1,86 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1>Truck Details - {{ truck.truck_number }}</h1>
+
+<h2>Tasks</h2>
+<h2>Other Truck Information</h2>
+<p>Add more fields related to your Truck: Build Date, Status, etc.</p> 
+
+<h2>Recent Tasks</h2> 
+<table>
+    <tr>
+        <th>Task Name</th>
+        <th>Technician</th>
+        <th>Start Time</th> 
+        <th>End Time</th> 
+    </tr>
+    {% for task in recent_tasks %}
+    <tr>
+        <td>{{ task.name }}</td>
+        <td>{{ task.time_entries.first().user.username }} </td> 
+        <td>{{ task.time_entries.first().start_time }}</td>  
+        <td>{{ task.time_entries.first().end_time }}</td> 
+    </tr>
+ <th>Start Time</th> 
+  <th>End Time</th> 
+<td>{{ task.time_entries.first().start_time | todatetime | strftime('%a, %b %d - %I:%M %p') }}</td>
+ <td>{{ task.time_entries.first().end_time | todatetime | strftime('%a, %b %d - %I:%M %p') }}</td> 
+
+</table>
+
+<h2>Recent Tasks</h2>
+<table>
+    {% for task in recent_tasks %}
+    <tr>
+        <td>{{ task.time_entries.first().start_time | todatetime | strftime('%Y-%m-%d %H:%M') }}</td> 
+        <td>{{ task.time_entries.first().end_time | todatetime | strftime('%Y-%m-%d %H:%M') }}</td>  
+    </tr>
+
+{% for task in recent_tasks %} <tr>
+        <td>Notes:
+            <ul> 
+                {% for note in task.time_entries.first().notes %} 
+                <li>{{ note.content }}</li> 
+                {% endfor %}
+            </ul>
+        </td>
+    </tr>
+{% endfor %}
+{% for note in task.time_entries.first().notes %} 
+    <li> 
+        {{ note.content }} -  
+        <small>{{ note.timestamp.strftime('%Y-%m-%d %H:%M') }}</small>
+        <a href="{{ url_for('edit_note', note_id=note.id) }}">Edit</a> 
+    </li> 
+{% endfor %}
+{% for note in task.time_entries.first().notes %} 
+    <li> 
+        <span class="note-content" data-note-id="{{ note.id }}"> 
+            {{ note.content | safe}} -  
+            <small>{{ note.timestamp.strftime('%Y-%m-%d %H:%M') }}</small>
+        </span>
+        <a href="#" class="edit-note-trigger">Edit</a> 
+        
+        <form class="edit-note-form" style="display:none;" data-note-id="{{ note.id }}"> 
+            <textarea class="form-control">{{ note.content }}</textarea>
+            <button type="button" class="btn btn-primary save-note" >Save</button> </form>
+    </li> 
+{% endfor %}
+{% for task in recent_tasks %} 
+    <td>
+        <form method="POST" action="{{ url_for('update_task_status', task_id=task.id) }}">
+            <select name="status">
+                {% for choice in TaskStatus %}
+                    <option value="{{ choice }}" {{ 'selected' if task.status == choice }}>{{ choice.value }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit" class="btn btn-sm btn-primary">Update</button>
+        </form>
+    </td> 
+</tr>
+{% endfor %} 
+
+    
+</table>
+{% endblock %}

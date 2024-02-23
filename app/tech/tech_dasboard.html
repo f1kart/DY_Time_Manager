@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+ 
+<div class="dashboard-header">
+   <h1>Welcome, {{ current_user.username }}!</h1>
+</div> 
+
+ <div class="tasks-container"> 
+    <h2>Assigned Tasks</h2>
+
+    <div class="task-list"> 
+        {# Task Listings Will Go Here (Iteratively Enhance This!) #}
+
+    </div> 
+ </div> 
+
+{% endblock %} 
+ <div class="tasks-container"> 
+    <h2>Assigned Tasks</h2>
+
+    <div class="task-list"> 
+        {% for task in user_tasks %}
+
+        <div class="task-card">
+            <h3>Task: {{ task.name }} (Truck ID: {{ task.truck_id }})</h3> 
+            <p>Status: {{ task.status }}</p> 
+
+            {% if task.start_time %}
+                <p>Start: {{ task.start_time | strftime('%d %b %Y, %H:%M') }}</p> 
+            {% endif %} 
+
+            <button type="button" class="btn btn-start" 
+              {% if task.status != 'IN_PROGRESS' %} disabled {% endif %}>
+                Start Task
+            </button>
+
+            <button type="button" class="btn btn-stop" 
+              {% if task.status == 'IN_PROGRESS' %} disabled {% endif %}>
+                Stop Task
+            </button> 
+
+        </div> 
+        {% else %} 
+            <p>No active tasks!</p> 
+        {% endfor %}
+
+    </div> 
+ </div> 

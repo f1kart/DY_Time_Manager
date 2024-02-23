@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1>Technician Dashboard - Truck: {{ truck.truck_number }}</h1>
+
+<h2>Tasks:</h2>
+<table>
+    <tr>
+        <th>Task Name</th>
+        <th>Standard Time</th>
+        <th>Total Time</th> 
+        <th>Progress</th>
+    </tr>
+    {% for task in tasks %}
+    <tr>
+        <td>{{ task.name }}</td>
+        <td>{{ task.standard_time }}</td> 
+        <td>{{ task.total_time }}</td> 
+        <td>
+            <div class="task-progress"> 
+                <div class="task-progress-bar" style="width: {{ calculate_progress(task) }}%"></div> 
+            </div>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %} 

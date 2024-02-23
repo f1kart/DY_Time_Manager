@@ -1,0 +1,10 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1>Edit Note</h1>
+<form method="POST"> 
+    {{ form.hidden_tag() }} 
+    {{ form.content(class='form-control') }} 
+    {{ form.submit(class='btn btn-primary') }}
+</form>
+{% endblock %}

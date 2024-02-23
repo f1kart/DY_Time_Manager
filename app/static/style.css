@@ -1,0 +1,48 @@
+/* Customize colors, fonts, background using DY themes! */
+body {
+    background-image: linear-gradient(black, #F39800); /* Black to DY Orange */
+    color: white; 
+    font-weight: bold; 
+    font-family: Impact, sans-serif; /* A bolder font */ 
+}
+
+.landing-page {
+    text-align: center; 
+    margin-top: 100px; 
+}
+
+.button {
+    background-color: #F39800;
+    border: 2px solid black;
+    color: black; 
+    font-weight: bold;
+    padding: 10px 25px;
+    border-radius: 8px; 
+}
+
+.task-progress { 
+    height: 20px; 
+    width: 150px; 
+    background-color: #333; /* A dark gray */
+    border-radius: 5px; 
+}
+
+.task-progress-bar { 
+    background-color: #F39800;  /* Start with DY Orange - Adjust if needed */
+    height: 100%;
+    border-radius: 5px;
+}
+
+/* Subtle Text Shadow - Ensure Readability against  Varying Gradient */
+h1 {
+    text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.5); 
+} 
+
+body {
+    background-image: url('{{ url_for('static', filename='dy-background.jpg') }}'); /* Adjust if your filename differes */ 
+    background-repeat: no-repeat; /* Prevent it from tiling */
+    background-size: cover; /* Make it fill the screen */
+}
+
+/* Additional Notes - Reference the DY Concrete Pumps website for  inspiration */
+/* Consider  subtle "checkerboard" textures, metallic finishes if they feel in-theme! */ 

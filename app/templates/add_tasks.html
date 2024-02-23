@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Add Task</h1>
+<form method="POST" action="{{ url_for('main.add_task') }}">
+    {{ form.csrf_token }}
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+        {{ form.task_name.label }} {{ form.task_name }}
+    </div>
+    <div class="form-group">
+        {{ form.start_time.label }} {{ form.start_time }}
+    </div>
+    <div class="form-group">
+        {{ form.stop_time.label }} {{ form.stop_time }}
+    </div>
+    <div class="form-group">
+        {{ form.truck.label }} {{ form.truck }}
+    </div>
+    <div class="form-group">
+        {{ form.submit }}
+    </div>
+</form>
+{% endblock %}
