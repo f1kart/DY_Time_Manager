@@ -1,10 +1,9 @@
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
+import sentry_sdk
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////C:\Repositories\flask\dy\maxcode\app\db.py
-db = SQLAlchemy(app)
+sentry_sdk.init(
+    dsn="https://289b22b6ef4db3b6fec473d26ce82c96@o4506808768397312.ingest.sentry.io/4506808771936256",
 
-class Truck(db.Model):
-    # your code here
-    pass
+    # Enable performance monitoring
+    enable_tracing=True,
+)
+

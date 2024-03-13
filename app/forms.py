@@ -32,3 +32,9 @@ class AddTaskForm(FlaskForm):
     stop_time = DateTimeField('Stop Time', validators=[DataRequired()])
     truck = SelectField('Truck', choices=[(truck.id, truck.truck_id) for truck in Truck.query.all()], validators=[DataRequired()])
     submit = SubmitField('Add Task')
+
+# app/forms.py
+
+class RestoreForm(FlaskForm):
+    destination_folder_id = IntegerField('Destination Folder ID', validators=[DataRequired()])
+    submit = SubmitField('Restore')

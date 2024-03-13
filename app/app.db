@@ -1,0 +1,3 @@
+flask db init  # Initializes the migration directory
+flask db migrate -m "Initial migration."  # Generates the migration scripts
+flask db upgrade  # Applies the migration to the database

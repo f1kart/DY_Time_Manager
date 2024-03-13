@@ -32,7 +32,7 @@ def custom_command():
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///dyconcrete.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 db = SQLAlchemy(app)
 manager = Manager(app)
 
@@ -50,7 +50,9 @@ class Truck(db.Model):
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
-    status = db.Column(db.String(20), default='IN_PROGRESS')  # Change 'model' to 'status'
+    model = db.Column(db.String(50), nullable=False)
+    status = db.Column(db.String(20), default='IN_PROGRESS')  # Add status field
+    time_entries = orm.relationship('TimeEntry', backref='task', lazy=True)
 
 class TimeEntry(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -124,4 +126,3 @@ def dashboard():
 
 if __name__ == '__main__':
     app.run()
-
